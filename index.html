@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ventas Vinted</title>
+<style>
+:root{--bg:#f3f6f6;--surf:#fff;--ink:#14282b;--mute:#5d7376;--line:#d9e3e4;--acc:#0b7f86;--accink:#fff;--pos:#12803f;--neg:#b3261e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1819;--surf:#16262a;--ink:#e6f0f1;--mute:#94adb0;--line:#26393d;--acc:#3cc1c8;--accink:#06292c;--pos:#5fd38a;--neg:#ff8a80}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+h1{font:700 26px/1.1 Georgia,"Times New Roman",serif;margin:4px 0 2px}
+.sub{color:var(--mute);margin:0 0 18px;font-size:14px}
+.tot{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+.tot div{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:12px}
+.tot small{display:block;color:var(--mute);font-size:13px}
+.tot b{font-size:22px}
+.tot .big{grid-column:1/-1;background:var(--acc);color:var(--accink);border-color:var(--acc)}
+.tot .big small{color:inherit;opacity:.85}
+.tot .big b{font-size:32px}
+form{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:22px;display:grid;gap:10px}
+h2{font-size:17px;margin:0}
+label{display:grid;gap:4px;font-size:14px;color:var(--mute)}
+input{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;width:100%}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:12px;background:var(--acc);color:var(--accink);cursor:pointer}
+button:disabled{opacity:.5}
+button.ghost{background:none;color:var(--neg);padding:4px 8px;font-weight:500;font-size:14px}
+button.out{background:none;color:var(--mute);border:1px solid var(--line);padding:8px 12px;font-weight:500;font-size:14px}
+#prev{max-width:140px;border-radius:8px;display:none}
+.sale{display:grid;grid-template-columns:76px 1fr;gap:12px;background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:10px}
+.sale img,.sale .ph{width:76px;height:76px;object-fit:cover;border-radius:8px;background:var(--bg)}
+.sale h3{margin:0;font-size:16px}
+.meta{color:var(--mute);font-size:13px}
+.gain{font-weight:700}
+.pos{color:var(--pos)}.neg{color:var(--neg)}
+.msg{color:var(--mute);text-align:center;padding:24px 0}
+.err{color:var(--neg);font-size:14px;min-height:18px}
+#login{max-width:380px;margin:12vh auto 0}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<main>
+
+<section id="login" class="hide">
+ <h1>Ventas de Vinted</h1>
+ <p class="sub">Entra con tu usuario para ver y añadir ventas.</p>
+ <form id="fl">
+  <label>Email<input id="em" type="email" required autocomplete="username"></label>
+  <label>Contraseña<input id="pw" type="password" required autocomplete="current-password"></label>
+  <div class="err" id="errL"></div>
+  <button type="submit" id="goL">Entrar</button>
+ </form>
+</section>
+
+<section id="app" class="hide">
+ <div class="top">
+  <div><h1>Ventas de Vinted</h1><p class="sub">Registro compartido: lo que añada uno lo ve el otro al instante.</p></div>
+  <button class="out" id="salir">Salir</button>
+ </div>
+
+ <section class="tot" aria-live="polite">
+  <div class="big"><small>Beneficio total</small><b id="tBen">0,00 €</b></div>
+  <div><small>Ingresado</small><b id="tIng">0,00 €</b></div>
+  <div><small>Invertido</small><b id="tCos">0,00 €</b></div>
+  <div><small>Ventas</small><b id="tNum">0</b></div>
+  <div><small>Media por venta</small><b id="tMed">0,00 €</b></div>
+ </section>
+
+ <form id="f">
+  <h2>Añadir venta</h2>
+  <label>Artículo<input id="nom" required maxlength="80" placeholder="Gorra Pirelli"></label>
+  <div class="row">
+   <label>Precio de venta (€)<input id="pv" type="number" step="0.01" min="0" inputmode="decimal" required></label>
+   <label>Lo que costó (€)<input id="pc" type="number" step="0.01" min="0" inputmode="decimal" value="0"></label>
+  </div>
+  <div class="row">
+   <label>Fecha<input id="fec" type="date" required></label>
+   <label>Quién la registra<input id="who" maxlength="30" placeholder="Rafael"></label>
+  </div>
+  <label>Foto<input id="foto" type="file" accept="image/*"></label>
+  <img id="prev" alt="Vista previa de la foto">
+  <div class="err" id="err"></div>
+  <button id="go" type="submit">Guardar venta</button>
+ </form>
+
+ <section>
+  <h2>Historial</h2>
+  <div id="lista"><p class="msg">Cargando…</p></div>
+ </section>
+</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+(function(){
+var SUPABASE_URL="https://mchwhibunminqzxqxtvi.supabase.co";
+var SUPABASE_KEY="sb_publishable_ZpxAmkArYHfJ7xh90a5Uxw_ReS1vHQp";
+var sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+var $=function(i){return document.getElementById(i)};
+var eur=function(n){return n.toLocaleString("es-ES",{style:"currency",currency:"EUR"})};
+var esc=function(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML};
+var ventas=[],user=null,canal=null;
+
+$("fec").value=new Date().toISOString().slice(0,10);
+try{$("who").value=localStorage.getItem("who")||""}catch(e){}
+
+function vista(logged){
+  $("login").classList.toggle("hide",logged);
+  $("app").classList.toggle("hide",!logged);
+}
+
+function pinta(urls){
+  var ing=0,cos=0;
+  ventas.forEach(function(v){ing+=+v.precio_venta;cos+=+v.precio_coste});
+  var n=ventas.length;
+  $("tIng").textContent=eur(ing);$("tCos").textContent=eur(cos);
+  $("tBen").textContent=eur(ing-cos);$("tNum").textContent=n;
+  $("tMed").textContent=eur(n?(ing-cos)/n:0);
+  if(!n){$("lista").innerHTML='<p class="msg">Todavía no hay ventas. Añade la primera arriba.</p>';return}
+  $("lista").innerHTML=ventas.map(function(v){
+    var b=v.precio_venta-v.precio_coste;
+    var u=v.foto_path&&urls[v.foto_path];
+    var img=u?'<img src="'+esc(u)+'" alt="'+esc(v.nombre)+'" loading="lazy">':'<div class="ph"></div>';
+    return '<article class="sale">'+img+'<div><h3>'+esc(v.nombre)+'</h3>'+
+      '<div class="meta">'+esc(v.fecha)+(v.registrado_por?' · '+esc(v.registrado_por):'')+'</div>'+
+      '<div>Vendida por '+eur(+v.precio_venta)+' · costó '+eur(+v.precio_coste)+'</div>'+
+      '<div><span class="gain '+(b>=0?'pos':'neg')+'">'+(b>=0?'+':'')+eur(b)+'</span> '+
+      '<button class="ghost" data-id="'+esc(v.id)+'">Borrar</button></div></div></article>';
+  }).join("");
+}
+
+async function cargar(){
+  var r=await sb.from("ventas").select("*").order("fecha",{ascending:false}).order("created_at",{ascending:false});
+  if(r.error){$("lista").innerHTML='<p class="msg">No se pudieron cargar las ventas: '+esc(r.error.message)+'</p>';return}
+  ventas=r.data||[];
+  var paths=ventas.map(function(v){return v.foto_path}).filter(Boolean);
+  var urls={};
+  if(paths.length){
+    var s=await sb.storage.from("fotos").createSignedUrls(paths,3600);
+    (s.data||[]).forEach(function(x){if(x.signedUrl)urls[x.path]=x.signedUrl});
+  }
+  pinta(urls);
+}
+
+function escucha(){
+  if(canal)return;
+  canal=sb.channel("ventas-cambios").on("postgres_changes",{event:"*",schema:"public",table:"ventas"},function(){cargar()}).subscribe();
+}
+
+function reduce(file){
+  return new Promise(function(res,rej){
+    var im=new Image(),u=URL.createObjectURL(file);
+    im.onload=function(){
+      var r=Math.min(1,900/Math.max(im.width,im.height));
+      var c=document.createElement("canvas");c.width=Math.round(im.width*r);c.height=Math.round(im.height*r);
+      c.getContext("2d").drawImage(im,0,0,c.width,c.height);
+      URL.revokeObjectURL(u);
+      c.toBlob(function(b){b?res(b):rej(new Error("img"))},"image/jpeg",0.82);
+    };
+    im.onerror=function(){rej(new Error("img"))};
+    im.src=u;
+  });
+}
+
+$("foto").addEventListener("change",function(){
+  var f=this.files[0],p=$("prev");
+  if(!f){p.style.display="none";return}
+  p.src=URL.createObjectURL(f);p.style.display="block";
+});
+
+$("fl").addEventListener("submit",async function(e){
+  e.preventDefault();
+  $("errL").textContent="";$("goL").disabled=true;
+  var r=await sb.auth.signInWithPassword({email:$("em").value.trim(),password:$("pw").value});
+  $("goL").disabled=false;
+  if(r.error)$("errL").textContent="Email o contraseña incorrectos.";
+});
+
+$("salir").addEventListener("click",function(){sb.auth.signOut()});
+
+$("f").addEventListener("submit",async function(e){
+  e.preventDefault();
+  var btn=$("go");btn.disabled=true;$("err").textContent="";
+  var who=$("who").value.trim();
+  try{localStorage.setItem("who",who)}catch(x){}
+  try{
+    var path=null,file=$("foto").files[0];
+    if(file){
+      var blob=await reduce(file);
+      path=user.id+"/"+Date.now()+".jpg";
+      var up=await sb.storage.from("fotos").upload(path,blob,{contentType:"image/jpeg"});
+      if(up.error)throw up.error;
+    }
+    var ins=await sb.from("ventas").insert({
+      nombre:$("nom").value.trim(),
+      precio_venta:parseFloat($("pv").value)||0,
+      precio_coste:parseFloat($("pc").value)||0,
+      fecha:$("fec").value,registrado_por:who,foto_path:path
+    });
+    if(ins.error)throw ins.error;
+    $("nom").value="";$("pv").value="";$("pc").value="0";$("foto").value="";$("prev").style.display="none";
+    cargar();
+  }catch(x){
+    $("err").textContent="No se pudo guardar: "+((x&&x.message)||"error desconocido");
+  }
+  btn.disabled=false;
+});
+
+$("lista").addEventListener("click",async function(e){
+  var id=e.target.getAttribute&&e.target.getAttribute("data-id");
+  if(!id||!confirm("¿Borrar esta venta?"))return;
+  var v=ventas.filter(function(x){return x.id===id})[0];
+  var r=await sb.from("ventas").delete().eq("id",id);
+  if(!r.error&&v&&v.foto_path)await sb.storage.from("fotos").remove([v.foto_path]);
+  cargar();
+});
+
+sb.auth.onAuthStateChange(function(ev,session){
+  user=session?session.user:null;
+  vista(!!user);
+  if(user){cargar();escucha()}
+  else if(canal){sb.removeChannel(canal);canal=null}
+});
+sb.auth.getSession().then(function(r){
+  if(!r.data.session)vista(false);
+});
+})();
+</script>
+</body>
+</html>
