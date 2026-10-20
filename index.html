@@ -4,54 +4,59 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ventas Vinted</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f6f6;--surf:#fff;--ink:#14282b;--mute:#5d7376;--line:#d9e3e4;--acc:#0b7f86;--accink:#fff;--pos:#12803f;--neg:#b3261e;--warn:#b86e00;
+:root{--bg1:#eaf3f3;--bg2:#f6f3fa;--surf:#fff;--ink:#17292d;--mute:#6a7f83;--line:#e1eaea;--acc:#12857f;--acc2:#2fa8b3;--accsoft:#e2f3f2;--accink:#fff;--pos:#1a8a4a;--possoft:#e5f5ec;--neg:#c0392b;--warn:#b7791f;--warnsoft:#fbf1dc;--sh:0 1px 2px rgba(20,60,66,.06),0 12px 28px -14px rgba(20,60,66,.22);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root{--bg:#0e1819;--surf:#16262a;--ink:#e6f0f1;--mute:#94adb0;--line:#26393d;--acc:#3cc1c8;--accink:#06292c;--pos:#5fd38a;--neg:#ff8a80;--warn:#f0b05a}}
+@media (prefers-color-scheme:dark){:root{--bg1:#0b1316;--bg2:#10171f;--surf:#141f24;--ink:#e8f1f1;--mute:#8fa6aa;--line:#233338;--acc:#4fcfc3;--acc2:#2c8fa3;--accsoft:#173337;--accink:#06292c;--pos:#63d58f;--possoft:#16301f;--neg:#ff8e82;--warn:#f0b865;--warnsoft:#33290f;--sh:0 1px 2px rgba(0,0,0,.3),0 12px 28px -14px rgba(0,0,0,.6)}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:760px;margin:0 auto;padding:18px 16px 48px}
+body{margin:0;min-height:100vh;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2)) fixed;font:16px/1.5 "DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:720px;margin:0 auto;padding:22px 16px 56px}
+h1,h2,.num{font-family:Fraunces,Georgia,serif;font-weight:600}
+h1{font-size:28px;line-height:1.1;margin:2px 0 4px;letter-spacing:-.01em}
+h2{font-size:18px;margin:0 0 10px}
+.sub{color:var(--mute);margin:0 0 18px;font-size:14px}
 .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .btns{display:flex;gap:8px}
-h1{font:700 26px/1.1 Georgia,"Times New Roman",serif;margin:4px 0 2px}
-h2{font-size:17px;margin:0 0 8px}
-.sub{color:var(--mute);margin:0 0 14px;font-size:14px}
-.tabs{display:flex;gap:6px;margin-bottom:12px}
-.tabs button{flex:1;background:var(--surf);color:var(--mute);border:1px solid var(--line)}
-.tabs button.on{background:var(--acc);color:var(--accink);border-color:var(--acc)}
+.tabs{display:flex;gap:4px;padding:4px;background:var(--surf);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;box-shadow:var(--sh)}
+.tabs button{flex:1;background:none;color:var(--mute);padding:9px;border-radius:10px}
+.tabs button.on{background:var(--accsoft);color:var(--acc)}
+.card,form,.fil,.tot>div{background:var(--surf);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh)}
+.card{padding:16px;margin-bottom:14px}
 .tot{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
-.tot div,.box{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:12px}
-.box{margin-bottom:14px}
-.tot small,.box small{display:block;color:var(--mute);font-size:13px}
-.tot b{font-size:21px}
-.tot .big{grid-column:1/-1;background:var(--acc);color:var(--accink);border-color:var(--acc)}
-.tot .big small{color:inherit;opacity:.9}.tot .big b{font-size:32px}
-.pb{height:8px;border-radius:4px;background:rgba(255,255,255,.3);margin:8px 0 4px;overflow:hidden}.pb i{display:block;height:100%;background:var(--accink)}
-.pb.g{background:var(--line)}.pb.g i{background:var(--acc)}.pb.w i{background:var(--warn)}
-form,.fil{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px;display:grid;gap:10px}
-label{display:grid;gap:4px;font-size:14px;color:var(--mute)}
-input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;width:100%}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:11px;background:var(--acc);color:var(--accink);cursor:pointer}
+.tot>div{padding:13px 14px}
+.tot small{display:block;color:var(--mute);font-size:13px}
+.tot b{font-size:21px;font-weight:600;font-variant-numeric:tabular-nums}
+.tot .big{grid-column:1/-1;padding:20px;border:0;color:#fff;background:radial-gradient(120% 140% at 100% 0%,rgba(255,255,255,.22),transparent 55%),linear-gradient(135deg,#0f7a76,#2a9fb0)}
+.tot .big small{color:rgba(255,255,255,.88)}
+.tot .big b{font-size:38px;font-family:Fraunces,Georgia,serif;letter-spacing:-.01em}
+.pb{height:8px;border-radius:6px;background:rgba(255,255,255,.28);margin:10px 0 4px;overflow:hidden}.pb i{display:block;height:100%;background:#fff;border-radius:6px}
+form,.fil{padding:16px;margin-bottom:14px;display:grid;gap:12px}
+label{display:grid;gap:5px;font-size:13px;color:var(--mute);font-weight:500}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg1);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--acc);box-shadow:0 0 0 3px var(--accsoft)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{font:inherit;font-weight:600;border:0;border-radius:12px;padding:12px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:var(--accink);cursor:pointer}
 button:disabled{opacity:.5}
-button.out,button.sec{background:none;color:var(--mute);border:1px solid var(--line);padding:8px 12px;font-weight:500;font-size:14px}
-.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.acts button{background:none;color:var(--acc);padding:4px 8px;font-weight:500;font-size:14px}
-.acts .d{color:var(--neg)}
-.sale{display:grid;grid-template-columns:76px 1fr;gap:12px;background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:10px}
-.sale img,.sale .ph{width:76px;height:76px;object-fit:cover;border-radius:8px;background:var(--bg);cursor:pointer}
-.sale h3{margin:0;font-size:16px}
+button.out,button.sec{background:var(--surf);color:var(--mute);border:1px solid var(--line);padding:8px 13px;font-weight:500;font-size:14px}
+.acts{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.acts button{background:var(--accsoft);color:var(--acc);padding:6px 11px;font-weight:600;font-size:13px;border-radius:10px}
+.acts .d{background:none;color:var(--neg)}
+.sale{display:grid;grid-template-columns:84px 1fr;gap:14px;background:var(--surf);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh);padding:12px;margin-top:12px}
+.sale img,.sale .ph{width:84px;height:84px;object-fit:cover;border-radius:12px;background:var(--accsoft);cursor:pointer}
+.sale h3{margin:0 0 2px;font-size:16px;font-weight:600}
 .meta{color:var(--mute);font-size:13px}
-.bd{display:inline-block;font-size:12px;font-weight:600;border-radius:20px;padding:1px 8px;border:1px solid var(--line);margin-left:6px;color:var(--mute)}
-.bd.vendido{color:var(--pos);border-color:var(--pos)}.bd.publicado{color:var(--acc);border-color:var(--acc)}.bd.stock{color:var(--warn);border-color:var(--warn)}
-.gain{font-weight:700}.pos{color:var(--pos)}.neg{color:var(--neg)}
-.rk{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--line);font-size:15px}
-.rk:last-child{border:0}
-.msg{color:var(--mute);text-align:center;padding:24px 0}
+.bd{display:inline-block;font-size:11.5px;font-weight:600;border-radius:20px;padding:2px 9px;margin-left:8px;vertical-align:2px}
+.bd.vendido{background:var(--possoft);color:var(--pos)}.bd.publicado{background:var(--accsoft);color:var(--acc)}.bd.stock{background:var(--warnsoft);color:var(--warn)}
+.gain{font-weight:700;font-size:17px}.pos{color:var(--pos)}.neg{color:var(--neg)}
+.rk{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:15px}.rk:last-child{border:0}
+.msg{color:var(--mute);text-align:center;padding:28px 0}
 .err{color:var(--neg);font-size:14px;min-height:18px}
-#prev{max-width:140px;border-radius:8px;display:none}
-#pv2{font-weight:600}
-#login{max-width:380px;margin:12vh auto 0}
+#prev{max-width:150px;border-radius:12px;display:none}
+#pv2{font-weight:600;color:var(--acc)}
+#login{max-width:400px;margin:11vh auto 0}
 .hide{display:none!important}
 svg text{fill:var(--mute);font-size:10px;text-anchor:middle}
 </style>
@@ -75,12 +80,12 @@ svg text{fill:var(--mute);font-size:10px;text-anchor:middle}
   <div><h1>Ventas de Vinted</h1><p class="sub">Inventario y ventas compartidos en tiempo real.</p></div>
   <div class="btns"><button class="out" id="csv">CSV</button><button class="out" id="salir">Salir</button></div>
  </div>
- <nav class="tabs"><button data-tab="res" class="on">Resumen</button><button data-tab="art">Artículos</button><button data-tab="add" id="tabAdd">Añadir</button></nav>
- <label id="mesBox">Ver mes<select id="mes"></select></label><div style="height:12px"></div>
+ <nav class="tabs"><button data-tab="res" class="on">Resumen</button><button data-tab="art">Artículos</button><button data-tab="add">Añadir</button></nav>
+ <label id="mesBox">Ver mes<select id="mes"></select></label><div style="height:14px"></div>
 
  <section id="t_res">
   <div id="res"></div>
-  <div class="box"><h2>Ajustes compartidos</h2>
+  <div class="card"><h2>Ajustes compartidos</h2>
    <div class="row"><label>Objetivo mensual de beneficio (€)<input id="obj" type="number" min="0" step="1" inputmode="decimal"></label>
    <label>Nº de socios para el reparto<input id="soc" type="number" min="1" step="1" inputmode="numeric"></label></div>
   </div>
@@ -88,10 +93,9 @@ svg text{fill:var(--mute);font-size:10px;text-anchor:middle}
 
  <section id="t_art" class="hide">
   <div class="fil">
-   <input id="q" type="search" placeholder="Buscar por nombre, marca, lote, talla…">
+   <input id="q" type="search" placeholder="Buscar por nombre o talla…">
    <div class="row"><select id="fe"><option value="">Todos los estados</option><option value="stock">En stock</option><option value="publicado">Publicados</option><option value="vendido">Vendidos</option></select>
-   <select id="fp"></select></div>
-   <select id="ord"><option value="rec">Más recientes</option><option value="mas">Mayor beneficio</option><option value="men">Menor beneficio</option><option value="ant">Más antiguos sin vender</option></select>
+   <select id="ord"><option value="rec">Más recientes</option><option value="mas">Mayor beneficio</option><option value="men">Menor beneficio</option><option value="ant">Más antiguos sin vender</option></select></div>
   </div>
   <div id="lista"><p class="msg">Cargando…</p></div>
  </section>
@@ -101,20 +105,13 @@ svg text{fill:var(--mute);font-size:10px;text-anchor:middle}
    <h2 id="fTit">Añadir artículo</h2>
    <label>Estado<select id="est"><option value="vendido">Vendido</option><option value="publicado">Publicado, a la venta</option><option value="stock">En stock, sin publicar</option></select></label>
    <label>Artículo<input id="nom" required maxlength="80" placeholder="Gorra Pirelli"></label>
-   <div class="row"><label>Marca<input id="marca" maxlength="40"></label><label>Talla<input id="talla" maxlength="20"></label></div>
-   <div class="row"><label>Categoría<input id="cat" list="cats" maxlength="40"></label><label>Plataforma<input id="plat" list="plats" maxlength="30" value="Vinted"></label></div>
-   <datalist id="cats"><option>Gorras</option><option>Camisetas</option><option>Sudaderas</option><option>Chaquetas</option><option>Pantalones</option><option>Zapatillas</option><option>Accesorios</option></datalist>
-   <datalist id="plats"><option>Vinted</option><option>Wallapop</option><option>eBay</option><option>Depop</option><option>Otra</option></datalist>
-   <div class="row"><label>Lote o proveedor<input id="lote" maxlength="40"></label><label>Dónde está guardado<input id="ubi" maxlength="40" placeholder="Caja 2, armario…"></label></div>
-   <div class="row"><label>Lo que costó (€)<input id="pc" type="number" step="0.01" min="0" inputmode="decimal" value="0"></label><label>Fecha de compra<input id="fcom" type="date"></label></div>
-   <div class="row"><label>Precio publicado (€)<input id="pp" type="number" step="0.01" min="0" inputmode="decimal"></label><label>Quién lo registra<input id="who" maxlength="30"></label></div>
-   <div id="vf" class="row" style="grid-template-columns:1fr 1fr;gap:10px">
+   <div class="row"><label>Talla<input id="talla" maxlength="20"></label><label>Lo que costó (€)<input id="pc" type="number" step="0.01" min="0" inputmode="decimal" value="0"></label></div>
+   <div id="vf" class="row">
     <label>Precio de venta (€)<input id="pv" type="number" step="0.01" min="0" inputmode="decimal"></label>
     <label>Fecha de venta<input id="fven" type="date"></label>
-    <label>Gastos de envío (€)<input id="env" type="number" step="0.01" min="0" inputmode="decimal" value="0"></label>
-    <label>Comisión o tasas (€)<input id="com" type="number" step="0.01" min="0" inputmode="decimal" value="0"></label>
    </div>
-   <div id="pv2" class="meta"></div>
+   <div id="pv2"></div>
+   <label>Quién lo registra<input id="who" maxlength="30"></label>
    <label>Notas<textarea id="notas" rows="2" maxlength="300"></textarea></label>
    <label>Foto<input id="foto" type="file" accept="image/*"></label>
    <img id="prev" alt="Vista previa de la foto">
@@ -136,28 +133,23 @@ var eur=function(x){return x.toLocaleString("es-ES",{style:"currency",currency:"
 var esc=function(s){var d=document.createElement("div");d.textContent=s==null?"":s;return d.innerHTML};
 var n=function(x){return +x||0};
 var pct=function(x){return (isFinite(x)?x:0).toFixed(0)+" %"};
-var D=[],aj={obj:0,soc:2},urls={},user=null,canal=null,editId=null,tab="res";
+var D=[],aj={obj:0,soc:2},urls={},user=null,canal=null,editId=null;
 var hd=new Date(),hoy=hd.getFullYear()+"-"+String(hd.getMonth()+1).padStart(2,"0"),hoyF=hoy+"-"+String(hd.getDate()).padStart(2,"0"),mes=hoy;
 var nomMes=function(k){var t=new Date(k+"-01T12:00:00").toLocaleDateString("es-ES",{month:"long",year:"numeric"});return t.charAt(0).toUpperCase()+t.slice(1)};
 var ym=function(d){return d?String(d).slice(0,7):""};
 var ini=function(v){return v.fecha_compra||String(v.created_at).slice(0,10)};
 var dias=function(a,b){return Math.round((new Date(b)-new Date(a))/864e5)};
-var ben=function(v){return v.estado==="vendido"?n(v.precio_venta)-n(v.precio_coste)-n(v.gastos_envio)-n(v.comision):0};
+var ben=function(v){return v.estado==="vendido"?n(v.precio_venta)-n(v.precio_coste):0};
 var vend=function(){return D.filter(function(v){return v.estado==="vendido"})};
 var delMes=function(k){return vend().filter(function(v){return k==="todos"||ym(v.fecha)===k})};
 try{$("who").value=localStorage.getItem("who")||""}catch(e){}
 
 function stats(a){
   var ing=0,gas=0,ds=[];
-  a.forEach(function(v){ing+=n(v.precio_venta);gas+=n(v.precio_coste)+n(v.gastos_envio)+n(v.comision);if(v.fecha)ds.push(dias(ini(v),v.fecha))});
+  a.forEach(function(v){ing+=n(v.precio_venta);gas+=n(v.precio_coste);if(v.fecha)ds.push(dias(ini(v),v.fecha))});
   var b=ing-gas;
   return{ing:ing,gas:gas,b:b,n:a.length,med:a.length?ing/a.length:0,mar:ing?b/ing*100:0,roi:gas?b/gas*100:0,dm:ds.length?ds.reduce(function(x,y){return x+y},0)/ds.length:null};
 }
-function top(a,key,vacio){
-  var m={};a.forEach(function(v){var k=v[key]||vacio;m[k]=(m[k]||0)+ben(v)});
-  return Object.keys(m).map(function(k){return[k,m[k]]}).sort(function(x,y){return y[1]-x[1]}).slice(0,5);
-}
-function rk(l){return l.length?l.map(function(r){return'<div class="rk"><span>'+esc(r[0])+'</span><b class="'+(r[1]>=0?"pos":"neg")+'">'+eur(r[1])+'</b></div>'}).join(""):'<small>Sin datos todavía.</small>'}
 
 function chart(){
   var ks=[],i;
@@ -166,8 +158,8 @@ function chart(){
   var mx=Math.max.apply(null,vals.map(Math.abs).concat([1]));
   return'<svg viewBox="0 0 300 130" width="100%" role="img" aria-label="Beneficio de los últimos 6 meses">'+ks.map(function(k,i){
     var h=Math.abs(vals[i])/mx*70,x=i*50+25,p=vals[i]>=0;
-    return'<rect x="'+(x-14)+'" y="'+(p?95-h:95)+'" width="28" height="'+Math.max(h,1)+'" rx="3" style="fill:var('+(p?"--acc":"--neg")+')"/>'+
-    '<text x="'+x+'" y="'+(p?95-h-4:95+h+11)+'">'+Math.round(vals[i])+'</text>'+
+    return'<rect x="'+(x-15)+'" y="'+(p?95-h:95)+'" width="30" height="'+Math.max(h,2)+'" rx="7" style="fill:var('+(p?"--acc":"--neg")+');opacity:'+(k===mes?1:.55)+'"/>'+
+    '<text x="'+x+'" y="'+(p?95-h-5:95+h+12)+'">'+Math.round(vals[i])+'</text>'+
     '<text x="'+x+'" y="122">'+new Date(k+"-01T12:00:00").toLocaleDateString("es-ES",{month:"short"})+'</text>';
   }).join("")+'<line x1="0" x2="300" y1="95" y2="95" style="stroke:var(--line)"/></svg>';
 }
@@ -183,30 +175,21 @@ function pintaRes(){
   if(aj.soc>1)big+='<small>Reparto entre '+aj.soc+': '+eur(S.b/aj.soc)+' cada uno</small>';
   big+='</div>';
   var st=D.filter(function(v){return v.estado!=="vendido"}),sv=st.reduce(function(s,v){return s+n(v.precio_coste)},0);
-  var h='<section class="tot">'+big+k("Ingresado",eur(S.ing))+k("Gastos (coste, envío, tasas)",eur(S.gas))+k("Ventas",S.n)+k("Media por venta",eur(S.med))+
+  var h='<section class="tot">'+big+k("Ingresado",eur(S.ing))+k("Gastos",eur(S.gas))+k("Ventas",S.n)+k("Media por venta",eur(S.med))+
     k("Margen",pct(S.mar))+k("Rentabilidad (ROI)",pct(S.roi))+k("Días medios en vender",S.dm==null?"–":S.dm.toFixed(0))+k("En stock",st.length+" · "+eur(sv))+'</section>';
-  h+='<div class="box"><h2>Beneficio, últimos 6 meses</h2>'+chart()+'</div>';
-  h+='<div class="box"><h2>Mejores categorías</h2>'+rk(top(sel,"categoria","Sin categoría"))+'</div>';
-  h+='<div class="box"><h2>Mejores marcas</h2>'+rk(top(sel,"marca","Sin marca"))+'</div>';
-  h+='<div class="box"><h2>Por plataforma</h2>'+rk(top(sel,"plataforma","Sin plataforma"))+'</div>';
+  h+='<div class="card"><h2>Beneficio, últimos 6 meses</h2>'+chart()+'</div>';
   var mejor=sel.slice().sort(function(a,b){return ben(b)-ben(a)})[0];
-  if(mejor)h+='<div class="box"><h2>Mejor venta</h2><div class="rk"><span>'+esc(mejor.nombre)+'</span><b class="pos">'+eur(ben(mejor))+'</b></div></div>';
+  if(mejor)h+='<div class="card"><h2>Mejor venta</h2><div class="rk"><span>'+esc(mejor.nombre)+'</span><b class="pos">'+eur(ben(mejor))+'</b></div></div>';
   var lentos=st.filter(function(v){return dias(ini(v),hoyF)>30}).sort(function(a,b){return ini(a)<ini(b)?-1:1});
-  h+='<div class="box"><h2>Stock parado (más de 30 días)</h2>'+(lentos.length?lentos.slice(0,5).map(function(v){return'<div class="rk"><span>'+esc(v.nombre)+'</span><span>'+dias(ini(v),hoyF)+' días</span></div>'}).join("")+(lentos.length>5?'<small>y '+(lentos.length-5)+' más</small>':""):'<small>Nada parado, bien.</small>')+'</div>';
-  var ya=vend().filter(function(v){return String(v.fecha).slice(0,4)===String(hd.getFullYear())&&(v.plataforma||"Vinted")==="Vinted"}),yi=ya.reduce(function(s,v){return s+n(v.precio_venta)},0);
-  var near=ya.length>=24||yi>=1600;
-  h+='<div class="box"><h2>Control anual en Vinted (orientativo)</h2><small>Las plataformas informan a Hacienda de los vendedores con 30 ventas o 2.000 € al año (normativa DAC7). Esto es solo un aviso, no asesoramiento fiscal.</small>'+
-    '<div class="rk"><span>Ventas este año</span><b>'+ya.length+' de 30</b></div><div class="pb g'+(near?" w":"")+'"><i style="width:'+Math.min(100,ya.length/30*100)+'%"></i></div>'+
-    '<div class="rk"><span>Ingresos este año</span><b>'+eur(yi)+' de 2.000 €</b></div><div class="pb g'+(near?" w":"")+'"><i style="width:'+Math.min(100,yi/2000*100)+'%"></i></div></div>';
+  h+='<div class="card"><h2>Stock parado (más de 30 días)</h2>'+(lentos.length?lentos.slice(0,5).map(function(v){return'<div class="rk"><span>'+esc(v.nombre)+'</span><span>'+dias(ini(v),hoyF)+' días</span></div>'}).join("")+(lentos.length>5?'<small class="meta">y '+(lentos.length-5)+' más</small>':""):'<small class="meta">Nada parado, bien.</small>')+'</div>';
   $("res").innerHTML=h;
 }
 
 function filtrados(){
-  var q=$("q").value.trim().toLowerCase(),fe=$("fe").value,fp=$("fp").value,o=$("ord").value;
+  var q=$("q").value.trim().toLowerCase(),fe=$("fe").value,o=$("ord").value;
   var a=D.filter(function(v){
     if(fe&&v.estado!==fe)return false;
-    if(fp&&(v.plataforma||"")!==fp)return false;
-    if(q&&[v.nombre,v.marca,v.lote,v.talla,v.categoria,v.ubicacion].join(" ").toLowerCase().indexOf(q)<0)return false;
+    if(q&&[v.nombre,v.talla].join(" ").toLowerCase().indexOf(q)<0)return false;
     if(mes!=="todos"&&v.estado==="vendido"&&ym(v.fecha)!==mes)return false;
     if(mes!=="todos"&&v.estado!=="vendido"&&!(fe==="stock"||fe==="publicado"))return false;
     return true;
@@ -220,24 +203,17 @@ function filtrados(){
 }
 
 function pintaLista(){
-  var ps={};D.forEach(function(v){if(v.plataforma)ps[v.plataforma]=1});
-  var fp=$("fp"),cur=fp.value;
-  fp.innerHTML='<option value="">Todas las plataformas</option>'+Object.keys(ps).sort().map(function(p){return'<option>'+esc(p)+'</option>'}).join("");
-  fp.value=cur;
   var a=filtrados();
   if(!a.length){$("lista").innerHTML='<p class="msg">No hay artículos con estos filtros.</p>';return}
   var et={vendido:"Vendido",publicado:"Publicado",stock:"En stock"};
   $("lista").innerHTML=a.map(function(v){
-    var u=v.foto_path&&urls[v.foto_path],b=ben(v),sold=v.estado==="vendido";
-    var img=u?'<img data-a="zoom" data-id="'+esc(v.id)+'" src="'+esc(u)+'" alt="'+esc(v.nombre)+'" loading="lazy">':'<div class="ph"></div>';
-    var meta=[v.marca,v.talla,v.categoria,v.plataforma,v.lote,v.ubicacion&&("📍 "+v.ubicacion)].filter(Boolean).map(esc).join(" · ");
-    var linea=sold?'Vendida por '+eur(n(v.precio_venta))+' · costó '+eur(n(v.precio_coste))+((n(v.gastos_envio)+n(v.comision))?' · envío y tasas '+eur(n(v.gastos_envio)+n(v.comision)):""):
-      'Costó '+eur(n(v.precio_coste))+(v.precio_publicado!=null?' · publicada a '+eur(n(v.precio_publicado)):"");
+    var u=v.foto_path&&urls[v.foto_path],b=ben(v),sold=v.estado==="vendido",id=' data-id="'+esc(v.id)+'"';
+    var img=u?'<img data-a="zoom"'+id+' src="'+esc(u)+'" alt="'+esc(v.nombre)+'" loading="lazy">':'<div class="ph"></div>';
+    var linea=sold?'Vendida por '+eur(n(v.precio_venta))+' · costó '+eur(n(v.precio_coste)):'Costó '+eur(n(v.precio_coste));
     var ex=sold?'<span class="gain '+(b>=0?"pos":"neg")+'">'+(b>=0?"+":"")+eur(b)+'</span> <span class="meta">ROI '+pct(n(v.precio_coste)?b/n(v.precio_coste)*100:0)+(v.fecha?' · vendida en '+dias(ini(v),v.fecha)+' días':"")+'</span>':
-      '<span class="meta">'+dias(ini(v),hoyF)+' días desde la compra</span>';
-    var id=' data-id="'+esc(v.id)+'"';
+      '<span class="meta">'+dias(ini(v),hoyF)+' días desde que lo registraste</span>';
     return'<article class="sale">'+img+'<div><h3>'+esc(v.nombre)+'<span class="bd '+v.estado+'">'+et[v.estado]+'</span></h3>'+
-      '<div class="meta">'+(sold?esc(v.fecha)+' · ':"")+(v.registrado_por?esc(v.registrado_por):"")+'</div>'+(meta?'<div class="meta">'+meta+'</div>':"")+
+      '<div class="meta">'+[sold&&v.fecha,v.talla&&"Talla "+v.talla,v.registrado_por].filter(Boolean).map(esc).join(" · ")+'</div>'+
       '<div>'+linea+'</div><div>'+ex+'</div>'+(v.notas?'<div class="meta">'+esc(v.notas)+'</div>':"")+
       '<div class="acts">'+(sold?"":'<button data-a="sold"'+id+'>Marcar vendido</button>')+'<button data-a="edit"'+id+'>Editar</button><button data-a="dup"'+id+'>Duplicar</button><button class="d" data-a="del"'+id+'>Borrar</button></div></div></article>';
   }).join("");
@@ -267,7 +243,6 @@ function escucha(){
 }
 
 function ver(t){
-  tab=t;
   ["res","art","add"].forEach(function(x){$("t_"+x).classList.toggle("hide",x!==t)});
   document.querySelectorAll(".tabs button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-tab")===t)});
   $("mesBox").classList.toggle("hide",t==="add");
@@ -278,19 +253,19 @@ document.querySelector(".tabs").addEventListener("click",function(e){var t=e.tar
 function preview(){
   var sold=$("est").value==="vendido";
   $("vf").classList.toggle("hide",!sold);
-  var b=n($("pv").value)-n($("pc").value)-n($("env").value)-n($("com").value),c=n($("pc").value);
-  $("pv2").textContent=sold?"Beneficio estimado: "+eur(b)+" · ROI "+pct(c?b/c*100:0):($("pp").value?"Si lo vendes a "+eur(n($("pp").value))+" ganarías "+eur(n($("pp").value)-n($("pc").value)):"");
+  var b=n($("pv").value)-n($("pc").value),c=n($("pc").value);
+  $("pv2").textContent=sold?"Beneficio estimado: "+eur(b)+" · ROI "+pct(c?b/c*100:0):"";
 }
-["est","pc","pp","pv","env","com"].forEach(function(i){$(i).addEventListener("input",preview)});
+["est","pc","pv"].forEach(function(i){$(i).addEventListener("input",preview)});
 
 function limpia(){
-  editId=null;$("f").reset();$("plat").value="Vinted";$("pc").value="0";$("env").value="0";$("com").value="0";$("fcom").value=hoyF;$("fven").value=hoyF;
+  editId=null;$("f").reset();$("pc").value="0";$("fven").value=hoyF;
   try{$("who").value=localStorage.getItem("who")||""}catch(e){}
   $("prev").style.display="none";$("fTit").textContent="Añadir artículo";$("canc").classList.add("hide");$("err").textContent="";preview();
 }
 function rellena(v){
   editId=v.id;$("f").reset();
-  var m={est:v.estado,nom:v.nombre,marca:v.marca,talla:v.talla,cat:v.categoria,plat:v.plataforma,lote:v.lote,ubi:v.ubicacion,pc:v.precio_coste,fcom:v.fecha_compra,pp:v.precio_publicado,who:v.registrado_por,pv:v.precio_venta,fven:v.fecha,env:v.gastos_envio,com:v.comision,notas:v.notas};
+  var m={est:v.estado,nom:v.nombre,talla:v.talla,pc:v.precio_coste,who:v.registrado_por,pv:v.precio_venta,fven:v.fecha,notas:v.notas};
   Object.keys(m).forEach(function(k){$(k).value=m[k]==null?"":m[k]});
   $("prev").style.display="none";$("fTit").textContent="Editar artículo";$("canc").classList.remove("hide");$("err").textContent="";preview();ver("add");
 }
@@ -319,13 +294,12 @@ $("f").addEventListener("submit",async function(e){
   try{
     var path=old?old.foto_path:null,file=$("foto").files[0],viejo=null;
     if(file){var blob=await reduce(file),np=user.id+"/"+Date.now()+".jpg",up=await sb.storage.from("fotos").upload(np,blob,{contentType:"image/jpeg"});if(up.error)throw up.error;viejo=path;path=np}
-    var P={estado:est,nombre:$("nom").value.trim(),marca:$("marca").value.trim(),talla:$("talla").value.trim(),categoria:$("cat").value.trim(),plataforma:$("plat").value.trim(),lote:$("lote").value.trim(),ubicacion:$("ubi").value.trim(),
-      precio_coste:n($("pc").value),fecha_compra:$("fcom").value||null,precio_publicado:$("pp").value===""?null:n($("pp").value),registrado_por:who,notas:$("notas").value.trim(),
-      precio_venta:sold?n($("pv").value):0,fecha:sold?($("fven").value||hoyF):null,gastos_envio:sold?n($("env").value):0,comision:sold?n($("com").value):0,foto_path:path};
+    var P={estado:est,nombre:$("nom").value.trim(),talla:$("talla").value.trim(),precio_coste:n($("pc").value),registrado_por:who,notas:$("notas").value.trim(),
+      precio_venta:sold?n($("pv").value):0,fecha:sold?($("fven").value||hoyF):null,foto_path:path};
     var r=editId?await sb.from("ventas").update(P).eq("id",editId):await sb.from("ventas").insert(P);
     if(r.error)throw r.error;
     if(viejo&&!D.some(function(x){return x.id!==editId&&x.foto_path===viejo}))await sb.storage.from("fotos").remove([viejo]);
-    var fueEdit=!!editId;limpia();await cargar();ver(fueEdit?"art":"art");
+    limpia();await cargar();ver("art");
   }catch(x){$("err").textContent="No se pudo guardar: "+((x&&x.message)||"error desconocido")}
   btn.disabled=false;
 });
@@ -337,7 +311,7 @@ $("lista").addEventListener("click",async function(e){
   if(a==="zoom"){if(urls[v.foto_path])window.open(urls[v.foto_path],"_blank");return}
   if(a==="edit"){rellena(v);return}
   if(a==="sold"){
-    var p=prompt("¿A qué precio la has vendido? (€)",v.precio_publicado!=null?v.precio_publicado:"");
+    var p=prompt("¿A qué precio la has vendido? (€)","");
     if(p===null)return;var pv=parseFloat(String(p).replace(",","."));
     if(isNaN(pv)||pv<0){alert("Pon un precio válido.");return}
     var r=await sb.from("ventas").update({estado:"vendido",precio_venta:pv,fecha:hoyF}).eq("id",id);
@@ -345,7 +319,7 @@ $("lista").addEventListener("click",async function(e){
   }
   if(a==="dup"){
     var c=Object.assign({},v);["id","created_at","foto_path"].forEach(function(k){delete c[k]});
-    c.estado="stock";c.precio_venta=0;c.fecha=null;c.gastos_envio=0;c.comision=0;c.fecha_compra=hoyF;
+    c.estado="stock";c.precio_venta=0;c.fecha=null;
     var r2=await sb.from("ventas").insert(c);if(r2.error)alert("No se pudo duplicar: "+r2.error.message);else cargar();return;
   }
   if(a==="del"){
@@ -356,7 +330,7 @@ $("lista").addEventListener("click",async function(e){
   }
 });
 
-["q","fe","fp","ord"].forEach(function(i){$(i).addEventListener("input",pintaLista)});
+["q","fe","ord"].forEach(function(i){$(i).addEventListener("input",pintaLista)});
 $("mes").addEventListener("change",function(){mes=this.value;pinta()});
 ["obj","soc"].forEach(function(i){$(i).addEventListener("change",async function(){
   var val=Math.max(i==="soc"?1:0,n(this.value));aj[i]=val;pinta();
@@ -364,7 +338,7 @@ $("mes").addEventListener("change",function(){mes=this.value;pinta()});
 })});
 
 $("csv").addEventListener("click",function(){
-  var cols=["estado","nombre","marca","talla","categoria","plataforma","lote","ubicacion","fecha_compra","fecha","precio_coste","precio_publicado","precio_venta","gastos_envio","comision","registrado_por","notas"];
+  var cols=["estado","nombre","talla","fecha","precio_coste","precio_venta","registrado_por","notas"];
   var q=function(x){x=x==null?"":String(x);return/[";\n]/.test(x)?'"'+x.replace(/"/g,'""')+'"':x};
   var rows=[cols.concat(["beneficio"]).join(";")].concat(D.map(function(v){return cols.map(function(c){return q(v[c])}).concat([ben(v)]).join(";")}));
   var a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+rows.join("\n")],{type:"text/csv;charset=utf-8"}));a.download="ventas-vinted-"+hoyF+".csv";a.click();
